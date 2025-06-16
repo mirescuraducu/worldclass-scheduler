@@ -19,4 +19,10 @@ host('alina-si-radu.ro')
 
 // Hooks
 
+task('go_build', function () {
+    run("go build initial.go");
+});
+
+
 after('deploy:failed', 'deploy:unlock');
+after('deploy:success', 'go_build');
