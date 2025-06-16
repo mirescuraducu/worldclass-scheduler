@@ -20,7 +20,7 @@ host('alina-si-radu.ro')
 // Hooks
 
 task('go_build', function () {
-    cd('{{deploy_path}}');
+    cd('{{deploy_path}}/current');
     run("go build initial.go");
 });
 
