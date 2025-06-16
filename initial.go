@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"os"
 	"time"
 )
 
@@ -31,8 +32,8 @@ func main() {
 	hour, minutes, _ := now.Clock()
 	timeString := fmt.Sprintf("%02d:%02d", hour, minutes)
 
-	radu := Credentials{"mirescu.raducu@gmail.com", "-------"}
-	alina := Credentials{"alina.tucunete@gmail.com", "------"}
+	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
+	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
 	bookings := []Bookings{
 		Bookings{
 			bookingWeekDay:   "Sunday",
