@@ -35,22 +35,22 @@ func main() {
 	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
 	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
 	bookings := []Bookings{
-		Bookings{
+		Bookings{ // TRX
 			bookingWeekDay:   "Sunday",
 			bookingStartTime: "16:00",
 			class:            ClassSchedule{"464", "730835"},
 			account:          []Credentials{radu, alina},
 		},
-		Bookings{
+		Bookings{ // TRX
 			bookingWeekDay:   "Tuesday",
 			bookingStartTime: "17:10",
 			class:            ClassSchedule{"464", "730835"},
 			account:          []Credentials{radu, alina},
 		},
-		Bookings{
+		Bookings{ // Pilates
 			bookingWeekDay:   "Monday",
 			bookingStartTime: "17:40",
-			class:            ClassSchedule{"410", "730835"},
+			class:            ClassSchedule{"410", "733153"},
 			account:          []Credentials{alina},
 		},
 	}
