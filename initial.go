@@ -20,6 +20,7 @@ type ClassSchedule struct {
 }
 
 type Bookings struct {
+	name             string
 	bookingWeekDay   string
 	bookingStartTime string
 	class            ClassSchedule
@@ -36,23 +37,40 @@ func main() {
 	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
 	bookings := []Bookings{
 		Bookings{ // TRX
+			name:             "TRX - Luni",
 			bookingWeekDay:   "Sunday",
 			bookingStartTime: "16:00",
 			class:            ClassSchedule{"464", "730835"},
 			account:          []Credentials{radu, alina},
 		},
 		Bookings{ // TRX
+			name:             "TRX - Miercuri",
 			bookingWeekDay:   "Tuesday",
 			bookingStartTime: "17:10",
-			class:            ClassSchedule{"464", "730835"},
+			class:            ClassSchedule{"464", "730913"},
 			account:          []Credentials{radu, alina},
 		},
 		Bookings{ // Pilates
+			name:             "Pilates - Marti",
 			bookingWeekDay:   "Monday",
 			bookingStartTime: "17:40",
 			class:            ClassSchedule{"410", "733153"},
 			account:          []Credentials{alina},
 		},
+		// Bookings{ // Pilates
+		//  name:             "Pilates - Joi",
+		// 	bookingWeekDay:   "Wednesday",
+		// 	bookingStartTime: "16:30",
+		// 	class:            ClassSchedule{"410", "TODO"},
+		// 	account:          []Credentials{alina},
+		// },
+		// Bookings{ // Zumba
+		//  name:             "Zumba - Vineri",
+		// 	bookingWeekDay:   "Thursday",
+		// 	bookingStartTime: "16:30",
+		// 	class:            ClassSchedule{"410", "TODO"},
+		// 	account:          []Credentials{alina},
+		// },
 	}
 
 	baseUrl, err := url.Parse("https://members.worldclass.ro")
@@ -66,13 +84,16 @@ func main() {
 			bookingAvailable = true
 			for _, account := range booking.account {
 				cookies := login(account, baseUrl)
-				schedule(cookies, booking.class, *baseUrl)
+				booked := schedule(cookies, booking.class, *baseUrl)
+				if booked {
+					log(fmt.Sprintf("Reserved class: %s, email: %s", booking.name, account.email))
+				}
 			}
 		}
 	}
 
 	if !bookingAvailable {
-		fmt.Println("No booking found!")
+		log("No booking found!")
 	}
 	// cookies := login(radu, baseUrl)
 	// schedule(cookies, ClassSchedule{"455", "725731"}, *baseUrl)
@@ -142,4 +163,9 @@ func schedule(cookies []*http.Cookie, classToSchedule ClassSchedule, baseUrl url
 
 	return false
 
+}
+
+func log(message string) {
+	now := time.Now()
+	fmt.Println(fmt.Sprintf("[%s] %s", now.Format(time.DateTime), message))
 }
