@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
@@ -33,6 +34,8 @@ func main() {
 	hour, minutes, _ := now.Clock()
 	timeString := fmt.Sprintf("%02d:%02d", hour, minutes)
 
+	time.Sleep(time.Duration(rand.Intn(10)))
+
 	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
 	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
 	bookings := []Bookings{
@@ -57,13 +60,13 @@ func main() {
 			class:            ClassSchedule{"410", "733153"},
 			account:          []Credentials{alina},
 		},
-		// Bookings{ // Pilates
-		//  name:             "Pilates - Joi",
-		// 	bookingWeekDay:   "Wednesday",
-		// 	bookingStartTime: "16:30",
-		// 	class:            ClassSchedule{"410", "TODO"},
-		// 	account:          []Credentials{alina},
-		// },
+		Bookings{ // Pilates
+			name:             "Pilates - Joi",
+			bookingWeekDay:   "Wednesday",
+			bookingStartTime: "16:30",
+			class:            ClassSchedule{"410", "733205"},
+			account:          []Credentials{alina},
+		},
 		// Bookings{ // Zumba
 		//  name:             "Zumba - Vineri",
 		// 	bookingWeekDay:   "Thursday",
