@@ -67,13 +67,13 @@ func main() {
 			class:            ClassSchedule{"410", "733205"},
 			account:          []Credentials{alina},
 		},
-		// Bookings{ // Zumba
-		//  name:             "Zumba - Vineri",
-		// 	bookingWeekDay:   "Thursday",
-		// 	bookingStartTime: "16:30",
-		// 	class:            ClassSchedule{"410", "TODO"},
-		// 	account:          []Credentials{alina},
-		// },
+		Bookings{ // Zumba
+			name:             "Zumba - Vineri",
+			bookingWeekDay:   "Thursday",
+			bookingStartTime: "16:30",
+			class:            ClassSchedule{"410", "733244"},
+			account:          []Credentials{alina},
+		},
 	}
 
 	baseUrl, err := url.Parse("https://members.worldclass.ro")
