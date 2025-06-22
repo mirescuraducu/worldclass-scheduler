@@ -35,7 +35,8 @@ func main() {
 	hour, minutes, _ := now.Clock()
 	timeString := fmt.Sprintf("%02d:%02d", hour, minutes)
 
-	time.Sleep(time.Duration(rand.Intn(10)))
+	duration, _ := time.ParseDuration(fmt.Sprintf("%ds", rand.Intn(10)))
+	time.Sleep(duration)
 
 	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
 	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
