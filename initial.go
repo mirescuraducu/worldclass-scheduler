@@ -16,8 +16,9 @@ type Credentials struct {
 }
 
 type ClassSchedule struct {
-	clubId  string
-	classId string
+	clubId     int
+	classId    int
+	weekNumber int
 }
 
 type Bookings struct {
@@ -43,35 +44,35 @@ func main() {
 			name:             "TRX - Luni",
 			bookingWeekDay:   "Sunday",
 			bookingStartTime: "16:00",
-			class:            ClassSchedule{"464", "730835"},
+			class:            ClassSchedule{464, 730836, 25},
 			account:          []Credentials{radu, alina},
 		},
 		Bookings{ // TRX
 			name:             "TRX - Miercuri",
 			bookingWeekDay:   "Tuesday",
 			bookingStartTime: "17:10",
-			class:            ClassSchedule{"464", "730913"},
+			class:            ClassSchedule{464, 730913, 24},
 			account:          []Credentials{radu, alina},
 		},
 		Bookings{ // Pilates
 			name:             "Pilates - Marti",
 			bookingWeekDay:   "Monday",
 			bookingStartTime: "17:40",
-			class:            ClassSchedule{"410", "733153"},
+			class:            ClassSchedule{410, 733153, 24},
 			account:          []Credentials{alina},
 		},
 		Bookings{ // Pilates
 			name:             "Pilates - Joi",
 			bookingWeekDay:   "Wednesday",
 			bookingStartTime: "16:30",
-			class:            ClassSchedule{"410", "733205"},
+			class:            ClassSchedule{410, 733205, 24},
 			account:          []Credentials{alina},
 		},
 		Bookings{ // Zumba
 			name:             "Zumba - Vineri",
 			bookingWeekDay:   "Thursday",
 			bookingStartTime: "16:30",
-			class:            ClassSchedule{"410", "733244"},
+			class:            ClassSchedule{410, 733244, 24},
 			account:          []Credentials{alina},
 		},
 	}
@@ -139,9 +140,10 @@ func schedule(cookies []*http.Cookie, classToSchedule ClassSchedule, baseUrl url
 		Jar: cookieJar,
 	}
 
+	_, currentWeekNumber := time.Now().ISOWeek()
 	queryParams := url.Values{}
-	queryParams.Set("id", classToSchedule.classId)
-	queryParams.Set("clubid", classToSchedule.clubId)
+	queryParams.Set("id", string(classToSchedule.classId+currentWeekNumber-classToSchedule.weekNumber))
+	queryParams.Set("clubid", string(classToSchedule.clubId))
 	scheduleUrl.RawQuery = queryParams.Encode() // encode and attach the query string
 
 	scheduleRequest, err := http.NewRequest("GET", scheduleUrl.String(), nil)
