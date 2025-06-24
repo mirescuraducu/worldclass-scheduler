@@ -52,7 +52,7 @@ func main() {
 			name:             "TRX - Miercuri",
 			bookingWeekDay:   "Tuesday",
 			bookingStartTime: "17:10",
-			class:            ClassSchedule{464, 730913, 24},
+			class:            ClassSchedule{464, 730914, 26},
 			account:          []Credentials{radu, alina},
 		},
 		Bookings{ // Pilates
@@ -66,14 +66,14 @@ func main() {
 			name:             "Pilates - Joi",
 			bookingWeekDay:   "Wednesday",
 			bookingStartTime: "16:30",
-			class:            ClassSchedule{410, 733205, 24},
+			class:            ClassSchedule{410, 733205, 25},
 			account:          []Credentials{alina},
 		},
 		Bookings{ // Zumba
 			name:             "Zumba - Vineri",
 			bookingWeekDay:   "Thursday",
 			bookingStartTime: "16:30",
-			class:            ClassSchedule{410, 733244, 24},
+			class:            ClassSchedule{410, 733244, 25},
 			account:          []Credentials{alina},
 		},
 	}
@@ -151,7 +151,7 @@ func schedule(cookies []*http.Cookie, classToSchedule ClassSchedule, baseUrl url
 	if err != nil {
 		panic(err)
 	}
-
+	println(scheduleRequest.URL.String())
 	for _, cookie := range cookies {
 		scheduleRequest.AddCookie(cookie)
 	}
