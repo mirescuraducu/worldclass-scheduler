@@ -7,6 +7,7 @@ import (
 	"net/http/cookiejar"
 	"net/url"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -83,10 +84,8 @@ func main() {
 		panic(err)
 	}
 
-	bookingAvailable := false
 	for _, booking := range bookings {
 		if booking.bookingWeekDay == weekday && booking.bookingStartTime == timeString {
-			bookingAvailable = true
 			for _, account := range booking.account {
 				cookies := login(account, baseUrl)
 				booked := schedule(cookies, booking.class, *baseUrl)
@@ -96,12 +95,6 @@ func main() {
 			}
 		}
 	}
-
-	if !bookingAvailable {
-		log("No booking found!")
-	}
-	// cookies := login(radu, baseUrl)
-	// schedule(cookies, ClassSchedule{"455", "725731"}, *baseUrl)
 }
 
 func login(credentials Credentials, baseUrl *url.URL) []*http.Cookie {
@@ -143,8 +136,8 @@ func schedule(cookies []*http.Cookie, classToSchedule ClassSchedule, baseUrl url
 
 	_, currentWeekNumber := time.Now().ISOWeek()
 	queryParams := url.Values{}
-	queryParams.Set("id", string(classToSchedule.classId+currentWeekNumber-classToSchedule.weekNumber))
-	queryParams.Set("clubid", string(classToSchedule.clubId))
+	queryParams.Set("id", strconv.Itoa(classToSchedule.classId+currentWeekNumber-classToSchedule.weekNumber))
+	queryParams.Set("clubid", strconv.Itoa(classToSchedule.clubId))
 	scheduleUrl.RawQuery = queryParams.Encode() // encode and attach the query string
 
 	scheduleRequest, err := http.NewRequest("GET", scheduleUrl.String(), nil)
