@@ -77,6 +77,13 @@ func main() {
 			class:            ClassSchedule{410, 733244, 25},
 			account:          []Credentials{alina},
 		},
+		Bookings{
+			name:             "Test",
+			bookingWeekDay:   "Saturday",
+			bookingStartTime: "12:00",
+			class:            ClassSchedule{455, 726096, 26},
+			account:          []Credentials{radu},
+		},
 	}
 
 	baseUrl, err := url.Parse("https://members.worldclass.ro")
