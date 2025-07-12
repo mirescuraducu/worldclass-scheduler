@@ -39,7 +39,7 @@ func main() {
 	duration, _ := time.ParseDuration(fmt.Sprintf("%ds", rand.Intn(10)))
 	time.Sleep(duration)
 
-	// radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
+	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
 	alina := Credentials{"alina.tucunete@gmail.com", os.Getenv("ALINA_PASSKEY")}
 	bookings := []Bookings{
 		Bookings{ // TRX
@@ -47,14 +47,14 @@ func main() {
 			bookingWeekDay:   "Sunday",
 			bookingStartTime: "16:00",
 			class:            ClassSchedule{464, 730836, 25},
-			account:          []Credentials{alina},
+			account:          []Credentials{alina, radu},
 		},
 		Bookings{ // TRX
 			name:             "TRX - Miercuri",
 			bookingWeekDay:   "Tuesday",
 			bookingStartTime: "17:10",
 			class:            ClassSchedule{464, 730914, 26},
-			account:          []Credentials{alina},
+			account:          []Credentials{alina, radu},
 		},
 		Bookings{ // Pilates
 			name:             "Pilates - Marti",
