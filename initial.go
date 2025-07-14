@@ -60,7 +60,7 @@ func main() {
 			name:             "Pilates - Marti",
 			bookingWeekDay:   "Monday",
 			bookingStartTime: "17:40",
-			class:            ClassSchedule{410, 733153, 24},
+			class:            ClassSchedule{410, 733157, 29},
 			account:          []Credentials{alina},
 		},
 		Bookings{ // Pilates
