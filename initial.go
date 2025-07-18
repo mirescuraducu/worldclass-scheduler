@@ -31,6 +31,7 @@ type Bookings struct {
 }
 
 func main() {
+	return
 	now := time.Now()                 // current local time
 	weekday := now.Weekday().String() // get the day of the week name as a string
 	hour, minutes, _ := now.Clock()
