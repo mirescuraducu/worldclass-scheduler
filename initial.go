@@ -46,7 +46,7 @@ func main() {
 			name:             "TRX - Luni",
 			bookingWeekDay:   "Sunday",
 			bookingStartTime: "16:00",
-			class:            ClassSchedule{464, 730836, 25},
+			class:            ClassSchedule{464, 753016, 31},
 			account:          []Credentials{alina, radu},
 		},
 		Bookings{ // TRX
