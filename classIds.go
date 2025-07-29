@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/url"
-	"os"
 	"time"
 
 	"github.com/gocolly/colly"
@@ -31,7 +30,7 @@ type class struct {
 func main() {
 	classes := []class{}
 	clubName := "Not defined"
-	radu := Credentials{"mirescu.raducu@gmail.com", os.Getenv("RADU_PASSKEY")}
+	radu := Credentials{"mirescu.raducu@gmail.com", "pZM9y5zF"}
 	baseUrl, err := url.Parse("https://members.worldclass.ro")
 	if err != nil {
 		panic(err)
@@ -74,6 +73,14 @@ func main() {
 
 	for _, classFound := range classes {
 		_, currentWeekNumber := time.Now().ISOWeek()
-		fmt.Println(currentWeekNumber, classFound.clubName, classFound.day, classFound.title, classFound.classId, classFound.trainer, classFound.hour)
+		log(fmt.Sprintf(
+			"Week: %d, Club: %s, Day: %s, Time: %s, Class: %s, Trainer: %s, ClassId: %s ",
+			currentWeekNumber, classFound.clubName, classFound.day, classFound.hour, classFound.title, classFound.trainer, classFound.classId,
+		))
 	}
+}
+
+func log(message string) {
+	now := time.Now()
+	fmt.Println(fmt.Sprintf("[%s] %s", now.Format(time.DateTime), message))
 }
