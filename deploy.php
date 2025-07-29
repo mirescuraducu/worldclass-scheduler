@@ -22,7 +22,7 @@ host('alina-si-radu.ro')
 task('go_build', function () {
     cd('{{deploy_path}}/current');
     run("go build initial.go");
-    // run("go build classIds.go");
+    run("go build classIds.go");
 });
 
 
