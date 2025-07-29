@@ -74,6 +74,6 @@ func main() {
 
 	for _, classFound := range classes {
 		_, currentWeekNumber := time.Now().ISOWeek()
-		fmt.Println(currentWeekNumber, classFound.clubName, classFound.title, classFound.classId, classFound.trainer, classFound.hour)
+		fmt.Println(currentWeekNumber, classFound.clubName, classFound.day, classFound.title, classFound.classId, classFound.trainer, classFound.hour)
 	}
 }
