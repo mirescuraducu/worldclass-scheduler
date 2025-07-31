@@ -73,7 +73,7 @@ func main() {
 		Bookings{ // Zumba
 			name:             "Zumba - Vineri",
 			bookingWeekDay:   "Thursday",
-			bookingStartTime: "16:40",
+			bookingStartTime: "16:30",
 			class:            ClassSchedule{410, 753762, 31},
 			account:          []Credentials{alina},
 		},
